@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 /// <summary>
 /// Code By muyunyan
-/// 2016/10/9 Git Ver 1.0
+/// 2016/10/9 Git Ver 1.1
 /// </summary>
 namespace _1KeyMoePic
 {
@@ -36,6 +36,15 @@ namespace _1KeyMoePic
             string jsonres = Utils.loadImgJson();
             string picid = Utils.loadJsonPicid(jsonres);
             picurl = Utils.createWeiboImgUrl(picid);
+            label_progress.Visible = true;
+            label_progress.Text = "";
+            try
+            {
+                pbx_main.LoadAsync(picurl);
+            } catch (Exception e)
+            {
+                label_progress.Text = "载入失败，请重试";
+            }
             pbx_main.ImageLocation = picurl;
             return;
         }
@@ -90,6 +99,16 @@ namespace _1KeyMoePic
             System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
             psi.Arguments = jpgFilePath;
             System.Diagnostics.Process.Start(psi);
+        }
+
+        private void pbx_main_LoadProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            label_progress.Text = e.ProgressPercentage.ToString() + "%";
+        }
+
+        private void pbx_main_LoadCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            label_progress.Visible = false;
         }
     }
 }

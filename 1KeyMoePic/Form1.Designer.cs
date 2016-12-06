@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_toWallpaper = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
+            this.label_progress = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_main)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,8 @@
             this.pbx_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx_main.TabIndex = 1;
             this.pbx_main.TabStop = false;
+            this.pbx_main.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pbx_main_LoadCompleted);
+            this.pbx_main.LoadProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pbx_main_LoadProgressChanged);
             this.pbx_main.Click += new System.EventHandler(this.pbx_main_Click);
             // 
             // label1
@@ -87,11 +90,20 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
+            // label_progress
+            // 
+            this.label_progress.AutoSize = true;
+            this.label_progress.Location = new System.Drawing.Point(243, 183);
+            this.label_progress.Name = "label_progress";
+            this.label_progress.Size = new System.Drawing.Size(0, 12);
+            this.label_progress.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 445);
+            this.Controls.Add(this.label_progress);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.btn_toWallpaper);
             this.Controls.Add(this.label1);
@@ -118,6 +130,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_toWallpaper;
         private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Label label_progress;
     }
 }
 
